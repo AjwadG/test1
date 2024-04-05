@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 //Step 3 - Make the styling show up.
 //Hint 1: CSS files are static files!
@@ -21,8 +21,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/submit", (req, res) => {
-  const name = `${noun[Math.floor(Math.random() * noun.length)]} ${adj[Math.floor(Math.random() * adj.length)]}`
-  res.render("index.ejs", {name});
+  const name = `${noun[Math.floor(Math.random() * noun.length)]} ${
+    adj[Math.floor(Math.random() * adj.length)]
+  }`;
+  res.render("index.ejs", { name });
   //Step 2 - Make the generate name functionality work
   //Hint: When the "Generate Name" button in index.ejs is clicked, it should hit up this route.
   //Then:
@@ -32,7 +34,7 @@ app.post("/submit", (req, res) => {
   //3. Test to make sure that the random words display in the h1 element in index.ejs
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Listening on port ${port}`);
 });
 
